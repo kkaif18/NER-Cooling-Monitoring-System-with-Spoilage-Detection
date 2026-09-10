@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>North East Farmer Cooling Monitoring & AI Inspection Station</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="edge-to-edge">
+  <!-- Top Navigation & System Brand Header -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">
+        <!-- North East Agri-Cooling Emblem: Hills, Chamber Structure & Fresh Harvest Leaf -->
+        <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="52" height="52" rx="14" fill="#0c1d14"/>
+          <path d="M4 40L17 22L27 34L37 19L48 33V44H4V40Z" fill="#1b3d2b" opacity="0.85"/>
+          <rect x="12" y="27" width="28" height="15" rx="4" fill="#EAF2E8" stroke="#2D8253" stroke-width="1.8"/>
+          <path d="M9 27L26 13L43 27H9Z" fill="#2D8253"/>
+          <path d="M26 18C29.8 18 33.5 21.5 32.5 25.5C31.5 29.2 28 32 24.5 32C21 32 20 28.5 21 24.8C22 21 24 18 26 18Z" fill="#52B788"/>
+          <circle cx="39" cy="11" r="2.2" fill="#00D2D3"/>
+          <circle cx="44" cy="16" r="1.6" fill="#00D2D3"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="eyebrow-row">
+          <span class="eyebrow-tag">NORTH EAST AGRO-COLD STORAGE CONSOLE</span>
+          <span class="eyebrow-meta">Indigenous Zero-Energy Chamber (ZECC)</span>
+        </div>
+        <h1 class="main-title">North East Farmer Cooling Monitoring System</h1>
+        <p class="subtitle">Real-Time Climate Telemetry, Microclimate Optimization & Active AI Produce Inspection</p>
+      </div>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-active"><span class="pulse-dot"></span> Active Chamber Guard</span>
+      <span class="badge badge-tech">MobileNetV2 Vision Station</span>
+      <span class="badge badge-region">North East India</span>
+    </div>
+  </header>
+
+  <!-- Interactive Chamber Operations & Telemetry Control Bar -->
+  <aside class="chamber-operations-bar">
+    <div class="op-section status-section">
+      <div class="op-status-indicator">
+        <span id="chamber-status-dot" class="pulse-dot"></span>
+      </div>
+      <div class="op-text-block">
+        <span class="op-label">Chamber Storage Condition</span>
+        <span id="chamber-status-text" class="op-val">Optimal Cold Hold (2.0–8.0 °C)</span>
+      </div>
+    </div>
+
+    <div class="op-divider"></div>
+
+    <!-- 60-Second Auto-Scan Countdown Widget -->
+    <div class="op-section countdown-section">
+      <div class="countdown-circle">
+        <svg viewBox="0 0 36 36">
+          <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+          <path id="scan-countdown-ring" class="circle-ring" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+        </svg>
+        <span id="scan-countdown-sec">60</span>
+      </div>
+      <div class="op-text-block">
+        <span class="op-label">Automated Inspection Cycle</span>
+        <span id="scan-countdown-text" class="op-val">Next auto-scan in 60s</span>
+      </div>
+    </div>
+
+    <div class="op-divider"></div>
+
+    <div class="op-section spec-section">
+      <div class="op-text-block">
+        <span class="op-label">Est. Shelf Life Extension</span>
+        <span id="shelf-life-val" class="op-val">Up to 14 Days Remaining</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Alert Banner -->
+  <div id="alert-banner" class="alert hidden" role="alert">
+    <div id="alert-items" class="alert-items"></div>
+  </div>
+
+  <!-- Edge-to-Edge Main Grid -->
+  <main class="dashboard-main">
+    <!-- Key Microclimate Telemetry Metric Cards -->
+    <section class="cards-grid">
+      <!-- Temperature Card -->
+      <article class="metric-card card-temp" id="card-temp">
+        <div class="card-header">
+          <div class="card-icon-box icon-temp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+            </svg>
+          </div>
+          <div class="card-title-group">
+            <h2>Chamber Temperature</h2>
+            <span class="card-badge badge-temp">Active Evaporative Cooling</span>
+          </div>
+        </div>
+        <div class="reading-row">
+          <span id="temperature" class="big-value">—</span>
+          <span class="metric-unit">°C</span>
+        </div>
+        <div class="card-footer">
+          <div class="range-info-row">
+            <span id="temp-range" class="range-text">Target: 2.0 – 8.0 °C</span>
+            <span id="temp-status-badge" class="mini-pill pill-ok">Optimal Zone</span>
+          </div>
+          <div class="meter-track">
+            <div id="temp-meter-bar" class="meter-bar fill-temp"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Humidity Card -->
+      <article class="metric-card card-humidity" id="card-humidity">
+        <div class="card-header">
+          <div class="card-icon-box icon-humidity">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+            </svg>
+          </div>
+          <div class="card-title-group">
+            <h2>Chamber Relative Humidity</h2>
+            <span class="card-badge badge-hum">Moisture Preservation</span>
+          </div>
+        </div>
+        <div class="reading-row">
+          <span id="humidity" class="big-value">—</span>
+          <span class="metric-unit">%</span>
+        </div>
+        <div class="card-footer">
+          <div class="range-info-row">
+            <span id="humidity-range" class="range-text">Target: 70.0 – 95.0 %</span>
+            <span id="hum-status-badge" class="mini-pill pill-ok">High Humidity Held</span>
+          </div>
+          <div class="meter-track">
+            <div id="hum-meter-bar" class="meter-bar fill-hum"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Produce Freshness & Spoilage Card -->
+      <article class="metric-card card-spoilage" id="card-spoilage">
+        <div class="card-header">
+          <div class="card-icon-box icon-spoilage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+            </svg>
+          </div>
+          <div class="card-title-group">
+            <h2>Produce Quality & Freshness</h2>
+            <span class="card-badge badge-spoilage">MobileNetV2 Vision Scan</span>
+          </div>
+        </div>
+        <div class="reading-row">
+          <div class="spoilage-readout">
+            <span id="spoilage-label" class="big-value small-text">Waiting</span>
+            <span id="spoilage-badge" class="badge-status status-waiting">Standby</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="range-info-row">
+            <span class="range-text">Freshness Index:</span>
+            <strong id="freshness-pct" class="pct-highlight">—</strong>
+          </div>
+          <div class="meter-track">
+            <div id="freshness-meter-bar" class="meter-bar fill-freshness"></div>
+          </div>
+          <p id="spoilage-conf" class="hint-caption">Awaiting chamber camera scan</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Upgraded Edge-to-Edge Telemetry Graph -->
+    <section class="dashboard-panel graph-panel">
+      <div class="panel-topbar">
+        <div class="topbar-title-group">
+          <div class="topbar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div>
+            <h2>Chamber Microclimate Telemetry</h2>
+            <span class="topbar-subtitle">Dynamic Temperature & Relative Humidity Monitor · Local Time Sync (<span id="local-timezone-name">Local</span>)</span>
+          </div>
+        </div>
+        <div class="topbar-controls">
+          <div class="legend-pills">
+            <span class="legend-pill"><i class="dot dot-temp"></i> Temperature (°C)</span>
+            <span class="legend-pill"><i class="dot dot-hum"></i> Humidity (%)</span>
+            <span class="legend-pill"><i class="dot dot-safe"></i> Safe Hold Band</span>
+          </div>
+        </div>
+      </div>
+      <div class="chart-wrapper" id="chart-container">
+        <canvas id="chart"></canvas>
+        <div id="chart-tooltip" class="chart-tooltip hidden"></div>
+      </div>
+    </section>
+
+    <!-- DECOUPLED VISION INSPECTION CONSOLE: TWO DEDICATED STATIONS -->
+    <div class="vision-stations-grid">
+      <!-- STATION 1: Live Chamber Video Feed (Heroic Station) -->
+      <section class="dashboard-panel video-station-panel">
+        <div class="panel-topbar">
+          <div class="topbar-title-group">
+            <div class="topbar-icon icon-video-live">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="23 7 16 12 23 17 23 7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+              </svg>
+            </div>
+            <div>
+              <h2>Live Chamber Video Feed</h2>
+              <span class="topbar-subtitle">Real-time optical observation deck · 30 FPS stream with neural detection reticle</span>
+            </div>
+          </div>
+          <div class="topbar-badges">
+            <span id="live-stream-badge" class="badge badge-active"><span class="pulse-dot"></span> <span id="stream-status-label">Standby</span></span>
+          </div>
+        </div>
+
+        <!-- Video Control Toolbar -->
+        <div class="station-toolbar">
+          <div class="toolbar-actions">
+            <button type="button" class="btn btn-action" id="btn-browser-cam">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 7l-7 5 7 5V7z"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+              </svg>
+              <span id="browser-cam-text">Use Browser Webcam</span>
+            </button>
+          </div>
+
+        </div>
+
+
+        <!-- Live Viewport Container: Video/IP Stream + Transparent Detection Canvas Overlay -->
+        <div class="live-viewport-container" id="live-viewport-container">
+          <!-- Live Video for Browser Cam (Webcam) -->
+          <video id="browser-cam-video" class="camera-media hidden" autoplay playsinline muted></video>
+
+
+
+          <!-- Transparent Real-Time Detection Canvas Overlaid on Video -->
+          <canvas id="live-detection-canvas"></canvas>
+
+          <!-- Laser Scan Beam Animation (Sweeps on Scan Chamber Now) -->
+          <div id="scan-laser-beam" class="scan-laser-beam hidden"></div>
+
+          <!-- Centered Empty State when Camera is not connected -->
+          <div id="video-placeholder" class="viewport-placeholder">
+            <div class="placeholder-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 7l-7 5 7 5V7z"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+              </svg>
+            </div>
+            <h3>Optical Observation Standby</h3>
+            <p>Click <strong>Use Browser Webcam</strong> to initiate live video monitoring with AI bounding boxes.</p>
+          </div>
+
+          <!-- Floating HUD Overlay on Video -->
+          <div class="video-floating-hud">
+            <span class="hud-pill"><span class="hud-dot"></span> REAL-TIME DETECTION HUD</span>
+            <span id="video-fps-meter" class="hud-stat">30 FPS Live Stream</span>
+          </div>
+          
+          <!-- Real-Time Lighting & Setup Suggestion Banner -->
+          <div id="lighting-suggestion" class="lighting-suggestion-banner hidden">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lighting-icon">
+              <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <span id="lighting-text">Keep lighting bright and use a plain background for accurate scans.</span>
+          </div>
+        </div>
+
+        <!-- Hidden canvas used for grabbing frames -->
+        <canvas id="browser-cam-canvas" class="hidden"></canvas>
+      </section>
+
+      <!-- STATION 2: SEPARATE Last Scanned Inspection Snapshot & Audit Log -->
+      <section class="dashboard-panel snapshot-station-panel">
+        <div class="panel-topbar">
+          <div class="topbar-title-group">
+            <div class="topbar-icon icon-snapshot-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </div>
+            <div>
+              <h2>Last Scanned Inspection Snapshot</h2>
+              <span class="topbar-subtitle">Neural inspection with localized decay hotspots</span>
+            </div>
+          </div>
+          <div class="topbar-badges">
+            <span id="detection-indicator-badge" class="badge-detection badge-pending">Standby</span>
+          </div>
+        </div>
+
+        <!-- Snapshot Control Header Bar: Timestamp + Heatmap/Palette Controls + Scan Now Button -->
+        <div class="snapshot-header-bar">
+          <div class="snapshot-meta-block">
+            <span class="meta-label">Inspected:</span>
+            <strong id="camera-meta" class="meta-time">No scan recorded yet</strong>
+          </div>
+          <div class="snapshot-header-actions">
+            <!-- Heatmap Toggle for Scanned Image -->
+            <label class="modern-toggle" title="Toggle attention heatmap on scanned image">
+              <input type="checkbox" id="toggle-snapshot-heatmap" checked>
+              <span class="toggle-track"></span>
+              <span class="toggle-title">Heatmap: <strong id="snapshot-heatmap-label">ON</strong></span>
+            </label>
+            <!-- Palette Selector for Scanned Image -->
+            <div class="colormap-picker">
+              <label for="select-snapshot-colormap">Palette:</label>
+              <select id="select-snapshot-colormap">
+                <option value="turbo" selected>Turbo Thermal</option>
+                <option value="hot">Fire / Hot</option>
+                <option value="jet">Jet Rainbow</option>
+              </select>
+            </div>
+            <!-- Prominent Scan Chamber Now Button in Scanned Section -->
+            <button type="button" class="btn btn-scan-now" id="btn-scan-now" title="Trigger instant neural inspection scan on chamber produce">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+              <span>Scan Chamber Now</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Archival Snapshot Viewport -->
+        <div class="snapshot-viewport-container">
+          <div id="camera-placeholder" class="viewport-placeholder">
+            <div class="placeholder-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
+            <h3>No Archival Snapshot Recorded</h3>
+            <p>Click <strong>Scan Chamber Now</strong> above or wait for the 60s automated inspection. High-resolution diagnostic stills will be displayed here.</p>
+          </div>
+          <img id="camera-image" alt="Last scanned produce inspection still with neural detection overlay" class="hidden">
+        </div>
+
+        <!-- Diagnostic Summary Grid -->
+        <div class="diagnostic-summary-grid">
+          <div class="diag-cell">
+            <span class="diag-label">Produce Quality Condition</span>
+            <span id="detected-condition" class="diag-val val-fresh">Optimal / Sound</span>
+          </div>
+          <div class="diag-cell">
+            <span class="diag-label">Model Confidence</span>
+            <span id="detected-confidence" class="diag-val">—</span>
+          </div>
+          <div class="diag-cell">
+            <span class="diag-label">Decay Severity Score</span>
+            <span id="detected-severity" class="diag-val">Optimal Fresh (0.0%)</span>
+          </div>
+          <div class="diag-cell">
+            <span class="diag-label">Spatial Saliency</span>
+            <span id="detected-thermal" class="diag-val">Turbo Thermal Mapping</span>
+          </div>
+        </div>
+
+        <!-- Inspection Audit Log & History Timeline -->
+        <div class="inspection-audit-card">
+          <div class="audit-header">
+            <h3>Chamber Inspection Audit Log</h3>
+            <span class="audit-count" id="audit-count">0 Scans</span>
+          </div>
+          <div class="audit-table-wrap">
+            <table class="audit-table" id="audit-table">
+              <thead>
+                <tr>
+                  <th>Timestamp (Local)</th>
+                  <th>Scanned Still</th>
+                  <th>Produce Condition</th>
+                  <th>Confidence</th>
+                  <th>Chamber Microclimate</th>
+                  <th>Action Recommendation</th>
+                </tr>
+              </thead>
+              <tbody id="audit-tbody">
+                <tr class="empty-audit-row">
+                  <td colspan="6">No inspection events logged yet. Click "Scan Chamber Now" to record.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Inspection Audit Image Preview Modal -->
+  <div id="scan-modal" class="scan-modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-scan-title">
+    <div class="scan-modal-backdrop" id="scan-modal-backdrop"></div>
+    <div class="scan-modal-card">
+      <div class="scan-modal-header">
+        <div class="modal-title-group">
+          <h3 id="modal-scan-title">Chamber Inspection Still</h3>
+          <span id="modal-scan-time" class="modal-scan-time">—</span>
+        </div>
+        <button type="button" class="btn-modal-close" id="btn-modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="scan-modal-body">
+        <div class="scan-modal-img-container">
+          <img id="scan-modal-img" src="" alt="Archival inspection still">
+        </div>
+        <div class="scan-modal-meta-grid">
+          <div class="modal-meta-cell">
+            <span class="modal-meta-label">Produce Condition</span>
+            <span id="modal-scan-condition" class="modal-meta-val">—</span>
+          </div>
+          <div class="modal-meta-cell">
+            <span class="modal-meta-label">Confidence</span>
+            <span id="modal-scan-conf" class="modal-meta-val">—</span>
+          </div>
+          <div class="modal-meta-cell">
+            <span class="modal-meta-label">Chamber Microclimate</span>
+            <span id="modal-scan-climate" class="modal-meta-val">—</span>
+          </div>
+          <div class="modal-meta-cell">
+            <span class="modal-meta-label">Action Recommendation</span>
+            <span id="modal-scan-rec" class="modal-meta-val">—</span>
+          </div>
+        </div>
+      </div>
+      <div class="scan-modal-footer">
+        <button type="button" class="btn btn-action" id="btn-modal-load-viewport">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Load into Snapshot Viewport</span>
+        </button>
+        <button type="button" class="btn btn-disconnect" id="btn-modal-dismiss">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modern Fluid Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <strong>North East Farmer Cold Storage Project · Active AI Vision Station</strong>
+        <p>Engineered for small-holder farmers and agricultural cooperatives across North East India (Assam, Meghalaya, Sikkim, Nagaland, Arunachal, Mizoram, Manipur, Tripura) to minimize post-harvest horticultural losses through passive evaporative cooling and continuous computer vision inspection.</p>
+      </div>
+      <div class="footer-specs">
+        <span>Microclimate Control: 2.0 – 8.0 °C / 70 – 95% RH</span>
+        <span>Detection Architecture: MobileNetV2 + Spatial Grad-CAM</span>
+        <span>Storage Protocol: 60s Cycle / Frame Pruning Active</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

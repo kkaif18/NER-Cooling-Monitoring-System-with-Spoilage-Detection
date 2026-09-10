@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+python-multipart
+sqlalchemy
+torch
+torchvision
+opencv-python-headless
+numpy
+pillow
+requests

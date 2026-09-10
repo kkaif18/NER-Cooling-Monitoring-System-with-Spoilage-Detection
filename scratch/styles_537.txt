@@ -1,0 +1,808 @@
+Created At: 2026-09-06T15:06:00+05:30
+Completed At: 2026-09-06T15:06:00+05:30
+File Path: `file:///c:/Users/kaifk/WebSite/static/styles.css`
+Total Lines: 1414
+Total Bytes: 25708
+Showing lines 1 to 800
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: :root {
+2:   /* High-Tech North East Agri-Cooling Palette */
+3:   --forest-black: #08140c;
+4:   --forest-dark: #0e2216;
+5:   --forest-base: #173824;
+6:   --forest-card: #12281b;
+7:   --forest-leaf: #2d6a45;
+8:   --forest-light: #449563;
+9:   --harvest-green: #25a25a;
+10:   --neon-green: #4ade80;
+11: 
+12:   /* Cool Chamber Glacier & Moisture Teal */
+13:   --glacier-cyan: #00d2d3;
+14:   --glacier-teal: #028090;
+15:   --glacier-dark: #004e64;
+16:   --glacier-bg: #eaf6f8;
+17:   --glacier-border: #bce5ee;
+18: 
+19:   /* Thermal Clay & Temperature */
+20:   --ember-orange: #ff8800;
+21:   --ember-clay: #b45309;
+22:   --clay-bg: #fff7ed;
+23:   --clay-border: #fed7aa;
+24: 
+25:   /* Spoilage & Caution */
+26:   --decay-ruby: #dc2626;
+27:   --decay-coral: #ef4444;
+28:   --decay-bg: #fef2f2;
+29:   --decay-border: #fecaca;
+30:   --warning-amber: #d97706;
+31: 
+32:   /* Surface, Canvas & Contrast */
+33:   --bg-page: #edf2ed;
+34:   --bg-card: #ffffff;
+35:   --bg-panel: #ffffff;
+36:   --border-light: #cfe0cf;
+37:   --border-subtle: #e2ede2;
+38:   --ink-primary: #0f1c13;
+39:   --ink-secondary: #3b4e41;
+40:   --ink-muted: #64786b;
+41: 
+42:   /* Modern Glass & Elevation */
+43:   --shadow-sm: 0 1px 3px rgba(12, 29, 20, 0.06);
+44:   --shadow-md: 0 4px 16px rgba(12, 29, 20, 0.08);
+45:   --shadow-lg: 0 10px 32px rgba(12, 29, 20, 0.12);
+46:   --radius-sm: 6px;
+47:   --radius-md: 10px;
+48:   --radius-lg: 14px;
+49: }
+50: 
+51: * {
+52:   box-sizing: border-box;
+53: }
+54: 
+55: body.edge-to-edge {
+56:   margin: 0;
+57:   padding: 0;
+58:   width: 100%;
+59:   min-height: 100vh;
+60:   font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+61:   background-color: var(--bg-page);
+62:   background-image: 
+63:     radial-gradient(1400px 450px at 15% -5%, #d8e8d8 0%, transparent 60%),
+64:     linear-gradient(180deg, #e1ece1 0%, var(--bg-page) 350px);
+65:   color: var(--ink-primary);
+66:   line-height: 1.5;
+67:   -webkit-font-smoothing: antialiased;
+68: }
+69: 
+70: /* Edge-to-Edge Container Padding */
+71: .app-header,
+72: .chamber-operations-bar,
+73: .alert,
+74: .dashboard-main,
+75: .app-footer {
+76:   width: 100%;
+77:   max-width: 100%;
+78:   padding-left: clamp(16px, 2.5vw, 36px);
+79:   padding-right: clamp(16px, 2.5vw, 36px);
+80:   box-sizing: border-box;
+81: }
+82: 
+83: /* Header */
+84: .app-header {
+85:   padding-top: 20px;
+86:   padding-bottom: 14px;
+87:   display: flex;
+88:   justify-content: space-between;
+89:   align-items: flex-start;
+90:   gap: 20px;
+91:   flex-wrap: wrap;
+92: }
+93: 
+94: .brand {
+95:   display: flex;
+96:   align-items: center;
+97:   gap: 16px;
+98: }
+99: 
+100: .mark {
+101:   width: 54px;
+102:   height: 54px;
+103:   flex: 0 0 54px;
+104:   border-radius: var(--radius-md);
+105:   box-shadow: 0 3px 10px rgba(12, 29, 20, 0.2);
+106:   display: flex;
+107:   align-items: center;
+108:   justify-content: center;
+109:   overflow: hidden;
+110: }
+111: 
+112: .mark svg {
+113:   width: 100%;
+114:   height: 100%;
+115:   display: block;
+116: }
+117: 
+118: .brand-text {
+119:   display: flex;
+120:   flex-direction: column;
+121: }
+122: 
+123: .eyebrow-row {
+124:   display: flex;
+125:   align-items: center;
+126:   gap: 8px;
+127:   flex-wrap: wrap;
+128: }
+129: 
+130: .eyebrow-tag {
+131:   font-size: 11px;
+132:   font-weight: 800;
+133:   letter-spacing: 0.08em;
+134:   text-transform: uppercase;
+135:   color: var(--forest-leaf);
+136: }
+137: 
+138: .eyebrow-meta {
+139:   font-size: 11px;
+140:   font-weight: 600;
+141:   color: var(--ink-muted);
+142:   background: rgba(45, 106, 69, 0.08);
+143:   padding: 1px 7px;
+144:   border-radius: 4px;
+145: }
+146: 
+147: .main-title {
+148:   margin: 2px 0 0;
+149:   font-family: "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+150:   font-size: clamp(22px, 2.2vw, 28px);
+151:   font-weight: 700;
+152:   letter-spacing: -0.025em;
+153:   color: var(--forest-dark);
+154:   line-height: 1.2;
+155: }
+156: 
+157: .subtitle {
+158:   margin: 3px 0 0;
+159:   font-size: 13.5px;
+160:   color: var(--ink-secondary);
+161: }
+162: 
+163: .header-badges {
+164:   display: flex;
+165:   align-items: center;
+166:   gap: 8px;
+167:   margin-top: 6px;
+168:   flex-wrap: wrap;
+169: }
+170: 
+171: /* Badges */
+172: .badge {
+173:   display: inline-flex;
+174:   align-items: center;
+175:   gap: 6px;
+176:   font-size: 11.5px;
+177:   font-weight: 600;
+178:   padding: 5px 12px;
+179:   border-radius: 999px;
+180:   border: 1px solid var(--border-light);
+181:   background: #ffffff;
+182:   color: var(--ink-secondary);
+183:   white-space: nowrap;
+184: }
+185: 
+186: .badge-active {
+187:   background: #e8f7ec;
+188:   border-color: #b5e4be;
+189:   color: var(--harvest-green);
+190: }
+191: 
+192: .badge-tech {
+193:   background: #f0f7f3;
+194:   border-color: #cee5d4;
+195:   color: var(--forest-base);
+196: }
+197: 
+198: .badge-region {
+199:   background: #f4f8f4;
+200:   color: var(--ink-muted);
+201: }
+202: 
+203: .pulse-dot {
+204:   width: 7px;
+205:   height: 7px;
+206:   border-radius: 50%;
+207:   background: #22c55e;
+208:   box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+209:   animation: pulse-ring 2s infinite;
+210: }
+211: 
+212: @keyframes pulse-ring {
+213:   0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+214:   70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+215:   100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+216: }
+217: 
+218: /* Chamber Operations Bar */
+219: .chamber-operations-bar {
+220:   margin-bottom: 16px;
+221: }
+222: 
+223: .chamber-operations-bar {
+224:   padding-top: 10px;
+225:   padding-bottom: 10px;
+226:   display: flex;
+227:   align-items: center;
+228:   justify-content: space-between;
+229:   gap: 16px;
+230:   flex-wrap: wrap;
+231:   background: #ffffff;
+232:   border: 1px solid var(--border-light);
+233:   border-radius: var(--radius-md);
+234:   box-shadow: var(--shadow-sm);
+235: }
+236: 
+237: .op-section {
+238:   display: flex;
+239:   align-items: center;
+240:   gap: 12px;
+241: }
+242: 
+243: .op-text-block {
+244:   display: flex;
+245:   flex-direction: column;
+246: }
+247: 
+248: .op-label {
+249:   font-size: 10.5px;
+250:   font-weight: 700;
+251:   text-transform: uppercase;
+252:   letter-spacing: 0.05em;
+253:   color: var(--ink-muted);
+254: }
+255: 
+256: .op-val {
+257:   font-size: 13.5px;
+258:   font-weight: 700;
+259:   color: var(--forest-dark);
+260: }
+261: 
+262: .op-divider {
+263:   width: 1px;
+264:   height: 30px;
+265:   background: var(--border-light);
+266: }
+267: 
+268: @media (max-width: 900px) {
+269:   .op-divider {
+270:     display: none;
+271:   }
+272: }
+273: 
+274: .crop-tags-row {
+275:   display: flex;
+276:   gap: 6px;
+277:   flex-wrap: wrap;
+278:   margin-top: 2px;
+279: }
+280: 
+281: .crop-tag {
+282:   display: inline-flex;
+283:   align-items: center;
+284:   gap: 4px;
+285:   padding: 2px 8px;
+286:   background: #f4f8f4;
+287:   border: 1px solid var(--border-light);
+288:   border-radius: 999px;
+289:   font-size: 11px;
+290:   font-weight: 600;
+291:   color: var(--forest-base);
+292: }
+293: 
+294: .crop-icon {
+295:   font-size: 12px;
+296: }
+297: 
+298: /* Countdown Circle Widget */
+299: .countdown-circle {
+300:   position: relative;
+301:   width: 32px;
+302:   height: 32px;
+303:   display: flex;
+304:   align-items: center;
+305:   justify-content: center;
+306: }
+307: 
+308: .countdown-circle svg {
+309:   width: 100%;
+310:   height: 100%;
+311:   transform: rotate(-90deg);
+312: }
+313: 
+314: .circle-bg {
+315:   fill: none;
+316:   stroke: #e4eee3;
+317:   stroke-width: 3.5;
+318: }
+319: 
+320: .circle-ring {
+321:   fill: none;
+322:   stroke: var(--forest-leaf);
+323:   stroke-width: 3.5;
+324:   stroke-linecap: round;
+325:   transition: stroke-dasharray 0.5s ease;
+326: }
+327: 
+328: .countdown-circle span {
+329:   position: absolute;
+330:   font-size: 11px;
+331:   font-weight: 800;
+332:   font-family: "Space Grotesk", sans-serif;
+333:   color: var(--forest-dark);
+334: }
+335: 
+336: /* Scan Chamber Now Button */
+337: .btn-scan-now {
+338:   background: linear-gradient(135deg, var(--forest-base), var(--forest-dark));
+339:   color: #ffffff;
+340:   padding: 9px 18px;
+341:   border-radius: var(--radius-sm);
+342:   border: 1px solid #143021;
+343:   font-size: 13px;
+344:   font-weight: 700;
+345:   cursor: pointer;
+346:   display: inline-flex;
+347:   align-items: center;
+348:   gap: 8px;
+349:   box-shadow: 0 2px 8px rgba(14, 34, 22, 0.25);
+350:   transition: transform 0.15s ease, box-shadow 0.15s ease;
+351: }
+352: 
+353: .btn-scan-now:hover {
+354:   transform: translateY(-1px);
+355:   box-shadow: 0 5px 14px rgba(14, 34, 22, 0.35);
+356: }
+357: 
+358: .btn-scan-now svg {
+359:   width: 16px;
+360:   height: 16px;
+361:   fill: var(--glacier-cyan);
+362: }
+363: 
+364: .btn-scan-now.scanning {
+365:   opacity: 0.8;
+366:   pointer-events: none;
+367: }
+368: 
+369: /* Alerts */
+370: .alert {
+371:   margin-bottom: 16px;
+372: }
+373: 
+374: .alert.hidden,
+375: .hidden {
+376:   display: none !important;
+377: }
+378: 
+379: .alert-items {
+380:   display: flex;
+381:   flex-direction: column;
+382:   gap: 8px;
+383: }
+384: 
+385: .alert-item {
+386:   display: flex;
+387:   align-items: center;
+388:   gap: 12px;
+389:   padding: 10px 14px;
+390:   border-radius: var(--radius-sm);
+391:   border: 1px solid var(--border-light);
+392:   border-left-width: 4px;
+393:   background: #ffffff;
+394:   box-shadow: var(--shadow-sm);
+395:   font-size: 14px;
+396:   font-weight: 600;
+397: }
+398: 
+399: .alert-icon {
+400:   flex: 0 0 22px;
+401:   width: 22px;
+402:   height: 22px;
+403:   display: flex;
+404:   align-items: center;
+405:   justify-content: center;
+406: }
+407: 
+408: .alert-icon svg {
+409:   width: 18px;
+410:   height: 18px;
+411: }
+412: 
+413: .alert-item.alert-temperature {
+414:   border-left-color: var(--ember-orange);
+415:   background: var(--clay-bg);
+416:   color: #9a3412;
+417: }
+418: 
+419: .alert-item.alert-humidity {
+420:   border-left-color: var(--glacier-teal);
+421:   background: var(--glacier-bg);
+422:   color: var(--glacier-dark);
+423: }
+424: 
+425: .alert-item.alert-spoilage {
+426:   border-left-color: var(--decay-ruby);
+427:   background: var(--decay-bg);
+428:   color: var(--decay-ruby);
+429: }
+430: 
+431: /* Main Edge-to-Edge Dashboard Grid */
+432: .dashboard-main {
+433:   padding-bottom: 40px;
+434: }
+435: 
+436: /* Metric Cards */
+437: .cards-grid {
+438:   display: grid;
+439:   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+440:   gap: 16px;
+441:   margin-bottom: 20px;
+442: }
+443: 
+444: .metric-card {
+445:   background: var(--bg-card);
+446:   border: 1px solid var(--border-light);
+447:   border-radius: var(--radius-md);
+448:   padding: 20px;
+449:   box-shadow: var(--shadow-sm);
+450:   transition: transform 0.15s ease, box-shadow 0.15s ease;
+451:   display: flex;
+452:   flex-direction: column;
+453:   justify-content: space-between;
+454: }
+455: 
+456: .metric-card:hover {
+457:   box-shadow: var(--shadow-md);
+458: }
+459: 
+460: .card-header {
+461:   display: flex;
+462:   align-items: center;
+463:   gap: 12px;
+464:   margin-bottom: 12px;
+465: }
+466: 
+467: .card-icon-box {
+468:   width: 40px;
+469:   height: 40px;
+470:   border-radius: var(--radius-sm);
+471:   display: flex;
+472:   align-items: center;
+473:   justify-content: center;
+474:   flex: 0 0 40px;
+475: }
+476: 
+477: .card-icon-box svg {
+478:   width: 22px;
+479:   height: 22px;
+480: }
+481: 
+482: .icon-temp {
+483:   background: var(--clay-bg);
+484:   color: var(--ember-orange);
+485: }
+486: 
+487: .icon-humidity {
+488:   background: var(--glacier-bg);
+489:   color: var(--glacier-teal);
+490: }
+491: 
+492: .icon-spoilage {
+493:   background: #ebf8f0;
+494:   color: var(--harvest-green);
+495: }
+496: 
+497: .card-title-group {
+498:   display: flex;
+499:   flex-direction: column;
+500: }
+501: 
+502: .card-title-group h2 {
+503:   margin: 0;
+504:   font-size: 14px;
+505:   font-weight: 700;
+506:   color: var(--ink-primary);
+507: }
+508: 
+509: .card-badge {
+510:   font-size: 10.5px;
+511:   font-weight: 700;
+512:   text-transform: uppercase;
+513:   letter-spacing: 0.05em;
+514:   margin-top: 1px;
+515: }
+516: 
+517: .badge-temp { color: var(--ember-orange); }
+518: .badge-hum { color: var(--glacier-teal); }
+519: .badge-spoilage { color: var(--harvest-green); }
+520: 
+521: .reading-row {
+522:   margin: 6px 0 12px;
+523:   display: flex;
+524:   align-items: baseline;
+525:   gap: 4px;
+526: }
+527: 
+528: .big-value {
+529:   font-family: "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+530:   font-size: clamp(38px, 3.2vw, 46px);
+531:   font-weight: 700;
+532:   line-height: 1;
+533:   letter-spacing: -0.03em;
+534:   color: var(--forest-dark);
+535: }
+536: 
+537: .card-temp .big-value { color: var(--ember-orange); }
+538: .card-humidity .big-value { color: var(--glacier-dark); }
+539: 
+540: .big-value.small-text {
+541:   font-size: 26px;
+542:   letter-spacing: -0.02em;
+543: }
+544: 
+545: .metric-unit {
+546:   font-size: 20px;
+547:   font-weight: 700;
+548:   color: var(--ink-muted);
+549: }
+550: 
+551: .card-footer {
+552:   margin-top: auto;
+553:   padding-top: 10px;
+554:   border-top: 1px solid var(--border-subtle);
+555: }
+556: 
+557: .range-info-row {
+558:   display: flex;
+559:   justify-content: space-between;
+560:   align-items: center;
+561:   font-size: 12.5px;
+562:   margin-bottom: 4px;
+563: }
+564: 
+565: .range-text {
+566:   color: var(--ink-muted);
+567:   font-weight: 500;
+568: }
+569: 
+570: .mini-pill {
+571:   font-size: 11px;
+572:   font-weight: 700;
+573:   padding: 1px 7px;
+574:   border-radius: 4px;
+575: }
+576: 
+577: .pill-ok {
+578:   background: #e8f7ec;
+579:   color: var(--harvest-green);
+580: }
+581: 
+582: .meter-track {
+583:   width: 100%;
+584:   height: 6px;
+585:   background: #ebf2eb;
+586:   border-radius: 999px;
+587:   margin: 6px 0 4px;
+588:   overflow: hidden;
+589: }
+590: 
+591: .meter-bar {
+592:   height: 100%;
+593:   border-radius: 999px;
+594:   transition: width 0.3s ease;
+595: }
+596: 
+597: .fill-temp {
+598:   width: 50%;
+599:   background: var(--ember-orange);
+600: }
+601: 
+602: .fill-hum {
+603:   width: 75%;
+604:   background: var(--glacier-cyan);
+605: }
+606: 
+607: .fill-freshness {
+608:   width: 100%;
+609:   background: var(--harvest-green);
+610: }
+611: 
+612: .spoilage-readout {
+613:   display: flex;
+614:   align-items: center;
+615:   justify-content: space-between;
+616:   width: 100%;
+617:   gap: 10px;
+618: }
+619: 
+620: .badge-status {
+621:   font-size: 11.5px;
+622:   font-weight: 700;
+623:   padding: 3px 10px;
+624:   border-radius: 999px;
+625:   white-space: nowrap;
+626: }
+627: 
+628: .status-waiting {
+629:   background: #f1f4f1;
+630:   color: var(--ink-muted);
+631: }
+632: 
+633: .status-fresh {
+634:   background: #eaf6ee;
+635:   color: var(--harvest-green);
+636:   border: 1px solid #c2e7cc;
+637: }
+638: 
+639: .status-risk {
+640:   background: var(--decay-bg);
+641:   color: var(--decay-ruby);
+642:   border: 1px solid var(--decay-border);
+643: }
+644: 
+645: .pct-highlight {
+646:   color: var(--forest-dark);
+647:   font-size: 13px;
+648: }
+649: 
+650: .hint-caption {
+651:   margin: 4px 0 0;
+652:   font-size: 12px;
+653:   color: var(--ink-muted);
+654: }
+655: 
+656: /* Dashboard Panels */
+657: .dashboard-panel {
+658:   background: var(--bg-panel);
+659:   border: 1px solid var(--border-light);
+660:   border-radius: var(--radius-lg);
+661:   padding: 22px;
+662:   margin-bottom: 20px;
+663:   box-shadow: var(--shadow-sm);
+664: }
+665: 
+666: .panel-topbar {
+667:   display: flex;
+668:   justify-content: space-between;
+669:   align-items: center;
+670:   gap: 14px;
+671:   flex-wrap: wrap;
+672:   margin-bottom: 16px;
+673:   padding-bottom: 12px;
+674:   border-bottom: 1px solid var(--border-subtle);
+675: }
+676: 
+677: .topbar-title-group {
+678:   display: flex;
+679:   align-items: center;
+680:   gap: 12px;
+681: }
+682: 
+683: .topbar-icon {
+684:   width: 34px;
+685:   height: 34px;
+686:   border-radius: var(--radius-sm);
+687:   background: #eef6f0;
+688:   color: var(--forest-mid);
+689:   display: flex;
+690:   align-items: center;
+691:   justify-content: center;
+692:   flex: 0 0 34px;
+693: }
+694: 
+695: .topbar-icon svg {
+696:   width: 19px;
+697:   height: 19px;
+698: }
+699: 
+700: .icon-video-live {
+701:   background: #e6f6ee;
+702:   color: var(--harvest-green);
+703: }
+704: 
+705: .icon-snapshot-box {
+706:   background: #edf5f8;
+707:   color: var(--glacier-teal);
+708: }
+709: 
+710: .topbar-title-group h2 {
+711:   margin: 0;
+712:   font-size: 16px;
+713:   font-weight: 700;
+714:   color: var(--forest-dark);
+715:   letter-spacing: -0.015em;
+716: }
+717: 
+718: .topbar-subtitle {
+719:   font-size: 12px;
+720:   color: var(--ink-muted);
+721:   display: block;
+722:   margin-top: 1px;
+723: }
+724: 
+725: .legend-pills {
+726:   display: flex;
+727:   gap: 16px;
+728:   font-size: 12px;
+729:   color: var(--ink-secondary);
+730:   flex-wrap: wrap;
+731: }
+732: 
+733: .legend-pill {
+734:   display: flex;
+735:   align-items: center;
+736:   gap: 6px;
+737:   font-weight: 500;
+738: }
+739: 
+740: .dot {
+741:   display: inline-block;
+742:   width: 8px;
+743:   height: 8px;
+744:   border-radius: 50%;
+745: }
+746: 
+747: .dot-temp { background: var(--ember-orange); }
+748: .dot-hum { background: var(--glacier-cyan); }
+749: .dot-safe { background: var(--harvest-green); }
+750: 
+751: /* High-Tech Telemetry Chart */
+752: .chart-wrapper {
+753:   position: relative;
+754:   width: 100%;
+755:   border-radius: var(--radius-md);
+756:   overflow: hidden;
+757:   border: 1px solid var(--border-light);
+758:   background: #0d1a12;
+759:   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+760: }
+761: 
+762: canvas#chart {
+763:   display: block;
+764:   width: 100%;
+765:   height: 330px;
+766:   cursor: crosshair;
+767: }
+768: 
+769: .chart-tooltip {
+770:   position: absolute;
+771:   pointer-events: none;
+772:   background: rgba(8, 20, 12, 0.94);
+773:   color: #ffffff;
+774:   padding: 8px 12px;
+775:   border: 1px solid rgba(74, 222, 128, 0.25);
+776:   border-radius: var(--radius-sm);
+777:   font-size: 12px;
+778:   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+779:   backdrop-filter: blur(6px);
+780:   z-index: 20;
+781:   transform: translate(-50%, -120%);
+782:   white-space: nowrap;
+783: }
+784: 
+785: .tooltip-time {
+786:   font-size: 11px;
+787:   color: #86efac;
+788:   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+789:   padding-bottom: 3px;
+790:   margin-bottom: 4px;
+791: }
+792: 
+793: .tooltip-row {
+794:   display: flex;
+795:   justify-content: space-between;
+796:   gap: 14px;
+797: }
+798: 
+799: /* DECOUPLED VISION STATIONS: TWO DEDICATED PANELS */
+800: .vision-stations-grid {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

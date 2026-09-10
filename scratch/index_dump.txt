@@ -1,0 +1,435 @@
+Created At: 2026-09-06T15:13:48+05:30
+Completed At: 2026-09-06T15:13:48+05:30
+File Path: `file:///c:/Users/kaifk/WebSite/static/index.html`
+Total Lines: 427
+Total Bytes: 20369
+Showing lines 1 to 427
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:   <meta charset="UTF-8">
+5:   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6:   <title>North East Farmer Cooling Monitoring & AI Inspection Station</title>
+7:   <link rel="preconnect" href="https://fonts.googleapis.com">
+8:   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+9:   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+10:   <link rel="stylesheet" href="/static/styles.css">
+11: </head>
+12: <body class="edge-to-edge">
+13:   <!-- Top Navigation & System Brand Header -->
+14:   <header class="app-header">
+15:     <div class="brand">
+16:       <div class="mark" aria-hidden="true">
+17:         <!-- North East Agri-Cooling Emblem: Hills, Chamber Structure & Fresh Harvest Leaf -->
+18:         <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+19:           <rect width="52" height="52" rx="14" fill="#0c1d14"/>
+20:           <path d="M4 40L17 22L27 34L37 19L48 33V44H4V40Z" fill="#1b3d2b" opacity="0.85"/>
+21:           <rect x="12" y="27" width="28" height="15" rx="4" fill="#EAF2E8" stroke="#2D8253" stroke-width="1.8"/>
+22:           <path d="M9 27L26 13L43 27H9Z" fill="#2D8253"/>
+23:           <path d="M26 18C29.8 18 33.5 21.5 32.5 25.5C31.5 29.2 28 32 24.5 32C21 32 20 28.5 21 24.8C22 21 24 18 26 18Z" fill="#52B788"/>
+24:           <circle cx="39" cy="11" r="2.2" fill="#00D2D3"/>
+25:           <circle cx="44" cy="16" r="1.6" fill="#00D2D3"/>
+26:         </svg>
+27:       </div>
+28:       <div class="brand-text">
+29:         <div class="eyebrow-row">
+30:           <span class="eyebrow-tag">NORTH EAST AGRO-COLD STORAGE CONSOLE</span>
+31:           <span class="eyebrow-meta">Indigenous Zero-Energy Chamber (ZECC)</span>
+32:         </div>
+33:         <h1 class="main-title">North East Farmer Cooling Monitoring System</h1>
+34:         <p class="subtitle">Real-Time Climate Telemetry, Microclimate Optimization & Active AI Produce Inspection</p>
+35:       </div>
+36:     </div>
+37:     <div class="header-badges">
+38:       <span class="badge badge-active"><span class="pulse-dot"></span> Active Chamber Guard</span>
+39:       <span class="badge badge-tech">MobileNetV2 Vision Station</span>
+40:       <span class="badge badge-region">North East India</span>
+41:     </div>
+42:   </header>
+43: 
+44:   <!-- Interactive Chamber Operations & Telemetry Control Bar -->
+45:   <aside class="chamber-operations-bar">
+46:     <div class="op-section status-section">
+47:       <div class="op-status-indicator">
+48:         <span id="chamber-status-dot" class="pulse-dot"></span>
+49:       </div>
+50:       <div class="op-text-block">
+51:         <span class="op-label">Chamber Storage Condition</span>
+52:         <span id="chamber-status-text" class="op-val">Optimal Cold Hold (2.0–8.0 °C)</span>
+53:       </div>
+54:     </div>
+55: 
+56:     <div class="op-divider"></div>
+57: 
+58:     <!-- 60-Second Auto-Scan Countdown Widget -->
+59:     <div class="op-section countdown-section">
+60:       <div class="countdown-circle">
+61:         <svg viewBox="0 0 36 36">
+62:           <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+63:           <path id="scan-countdown-ring" class="circle-ring" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+64:         </svg>
+65:         <span id="scan-countdown-sec">60</span>
+66:       </div>
+67:       <div class="op-text-block">
+68:         <span class="op-label">Automated Inspection Cycle</span>
+69:         <span id="scan-countdown-text" class="op-val">Next auto-scan in 60s</span>
+70:       </div>
+71:     </div>
+72: 
+73:     <div class="op-divider"></div>
+74: 
+75:     <div class="op-section spec-section">
+76:       <div class="op-text-block">
+77:         <span class="op-label">Indigenous Cooling Core</span>
+78:         <span class="op-val">Double-Walled River Sand & Terracotta ZECC</span>
+79:       </div>
+80:     </div>
+81:   </aside>
+82: 
+83:   <!-- Alert Banner -->
+84:   <div id="alert-banner" class="alert hidden" role="alert">
+85:     <div id="alert-items" class="alert-items"></div>
+86:   </div>
+87: 
+88:   <!-- Edge-to-Edge Main Grid -->
+89:   <main class="dashboard-main">
+90:     <!-- Key Microclimate Telemetry Metric Cards -->
+91:     <section class="cards-grid">
+92:       <!-- Temperature Card -->
+93:       <article class="metric-card card-temp" id="card-temp">
+94:         <div class="card-header">
+95:           <div class="card-icon-box icon-temp">
+96:             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+97:               <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+98:             </svg>
+99:           </div>
+100:           <div class="card-title-group">
+101:             <h2>Chamber Temperature</h2>
+102:             <span class="card-badge badge-temp">Active Evaporative Cooling</span>
+103:           </div>
+104:         </div>
+105:         <div class="reading-row">
+106:           <span id="temperature" class="big-value">—</span>
+107:           <span class="metric-unit">°C</span>
+108:         </div>
+109:         <div class="card-footer">
+110:           <div class="range-info-row">
+111:             <span id="temp-range" class="range-text">Target: 2.0 – 8.0 °C</span>
+112:             <span id="temp-status-badge" class="mini-pill pill-ok">Optimal Zone</span>
+113:           </div>
+114:           <div class="meter-track">
+115:             <div id="temp-meter-bar" class="meter-bar fill-temp"></div>
+116:           </div>
+117:         </div>
+118:       </article>
+119: 
+120:       <!-- Humidity Card -->
+121:       <article class="metric-card card-humidity" id="card-humidity">
+122:         <div class="card-header">
+123:           <div class="card-icon-box icon-humidity">
+124:             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+125:               <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+126:             </svg>
+127:           </div>
+128:           <div class="card-title-group">
+129:             <h2>Chamber Relative Humidity</h2>
+130:             <span class="card-badge badge-hum">Moisture Preservation</span>
+131:           </div>
+132:         </div>
+133:         <div class="reading-row">
+134:           <span id="humidity" class="big-value">—</span>
+135:           <span class="metric-unit">%</span>
+136:         </div>
+137:         <div class="card-footer">
+138:           <div class="range-info-row">
+139:             <span id="humidity-range" class="range-text">Target: 70.0 – 95.0 %</span>
+140:             <span id="hum-status-badge" class="mini-pill pill-ok">High Humidity Held</span>
+141:           </div>
+142:           <div class="meter-track">
+143:             <div id="hum-meter-bar" class="meter-bar fill-hum"></div>
+144:           </div>
+145:         </div>
+146:       </article>
+147: 
+148:       <!-- Produce Freshness & Spoilage Card -->
+149:       <article class="metric-card card-spoilage" id="card-spoilage">
+150:         <div class="card-header">
+151:           <div class="card-icon-box icon-spoilage">
+152:             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+153:               <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+154:               <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+155:             </svg>
+156:           </div>
+157:           <div class="card-title-group">
+158:             <h2>Produce Quality & Freshness</h2>
+159:             <span class="card-badge badge-spoilage">MobileNetV2 Vision Scan</span>
+160:           </div>
+161:         </div>
+162:         <div class="reading-row">
+163:           <div class="spoilage-readout">
+164:             <span id="spoilage-label" class="big-value small-text">Waiting</span>
+165:             <span id="spoilage-badge" class="badge-status status-waiting">Standby</span>
+166:           </div>
+167:         </div>
+168:         <div class="card-footer">
+169:           <div class="range-info-row">
+170:             <span class="range-text">Freshness Index:</span>
+171:             <strong id="freshness-pct" class="pct-highlight">—</strong>
+172:           </div>
+173:           <div class="meter-track">
+174:             <div id="freshness-meter-bar" class="meter-bar fill-freshness"></div>
+175:           </div>
+176:           <p id="spoilage-conf" class="hint-caption">Awaiting chamber camera scan</p>
+177:         </div>
+178:       </article>
+179:     </section>
+180: 
+181:     <!-- Upgraded Edge-to-Edge Telemetry Graph -->
+182:     <section class="dashboard-panel graph-panel">
+183:       <div class="panel-topbar">
+184:         <div class="topbar-title-group">
+185:           <div class="topbar-icon">
+186:             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+187:               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+188:             </svg>
+189:           </div>
+190:           <div>
+191:             <h2>Chamber Microclimate Telemetry</h2>
+192:             <span class="topbar-subtitle">Dynamic Temperature & Relative Humidity Monitor · Local Time Sync (<span id="local-timezone-name">Local</span>)</span>
+193:           </div>
+194:         </div>
+195:         <div class="topbar-controls">
+196:           <div class="legend-pills">
+197:             <span class="legend-pill"><i class="dot dot-temp"></i> Temperature (°C)</span>
+198:             <span class="legend-pill"><i class="dot dot-hum"></i> Humidity (%)</span>
+199:             <span class="legend-pill"><i class="dot dot-safe"></i> Safe Hold Band</span>
+200:           </div>
+201:         </div>
+202:       </div>
+203:       <div class="chart-wrapper" id="chart-container">
+204:         <canvas id="chart"></canvas>
+205:         <div id="chart-tooltip" class="chart-tooltip hidden"></div>
+206:       </div>
+207:     </section>
+208: 
+209:     <!-- DECOUPLED VISION INSPECTION CONSOLE: TWO DEDICATED STATIONS -->
+210:     <div class="vision-stations-grid">
+211:     <!-- DECOUPLED VISION INSPECTION CONSOLE: TWO DEDICATED STATIONS -->
+212:     <div class="vision-stations-grid">
+213:       <!-- STATION 1: Live Chamber Video Feed (Heroic Station) -->
+214:       <section class="dashboard-panel video-station-panel">
+215:         <div class="panel-topbar">
+216:           <div class="topbar-title-group">
+217:             <div class="topbar-icon icon-video-live">
+218:               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+219:                 <polygon points="23 7 16 12 23 17 23 7"/>
+220:                 <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+221:               </svg>
+222:             </div>
+223:             <div>
+224:               <h2>Live Chamber Video Feed</h2>
+225:               <span class="topbar-subtitle">Real-time optical observation deck · 30 FPS stream with neural detection reticle</span>
+226:             </div>
+227:           </div>
+228:           <div class="topbar-badges">
+229:             <span id="live-stream-badge" class="badge badge-active"><span class="pulse-dot"></span> <span id="stream-status-label">Standby</span></span>
+230:           </div>
+231:         </div>
+232: 
+233:         <!-- Video Control Toolbar -->
+234:         <div class="station-toolbar">
+235:           <div class="toolbar-actions">
+236:             <button type="button" class="btn btn-action" id="btn-browser-cam">
+237:               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+238:                 <path d="M23 7l-7 5 7 5V7z"/>
+239:                 <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+240:               </svg>
+241:               <span id="browser-cam-text">Use Browser Webcam</span>
+242:             </button>
+243:           </div>
+244:           <!-- Stream Connection Form for Phone IP Webcam / USB -->
+245:           <form id="camera-form" class="stream-connect-form">
+246:             <div class="stream-input-row">
+247:               <input id="camera-url" name="url" type="text" placeholder="IP Webcam URL (e.g. http://192.168.x.x:8080/video) or 0" autocomplete="off">
+248:               <button type="submit" class="btn btn-connect" id="camera-connect">Connect Stream</button>
+249:               <button type="button" class="btn btn-disconnect" id="camera-stop">Stop</button>
+250:             </div>
+251:           </form>
+252:         </div>
+253:         <p id="camera-source-status" class="stream-status-text"></p>
+254: 
+255:         <!-- Live Viewport Container: Video/IP Stream + Transparent Detection Canvas Overlay -->
+256:         <div class="live-viewport-container" id="live-viewport-container">
+257:           <!-- Live Video for Browser Cam (Webcam) -->
+258:           <video id="browser-cam-video" class="camera-media hidden" autoplay playsinline muted></video>
+259: 
+260:           <!-- Live MJPEG Stream for IP Webcam / Network Camera -->
+261:           <img id="ip-camera-feed" class="camera-media hidden" alt="Live Chamber IP Feed" crossorigin="anonymous">
+262: 
+263:           <!-- Transparent Real-Time Detection Canvas Overlaid on Video -->
+264:           <canvas id="live-detection-canvas"></canvas>
+265: 
+266:           <!-- Laser Scan Beam Animation (Sweeps on Scan Chamber Now) -->
+267:           <div id="scan-laser-beam" class="scan-laser-beam hidden"></div>
+268: 
+269:           <!-- Centered Empty State when Camera is not connected -->
+270:           <div id="video-placeholder" class="viewport-placeholder">
+271:             <div class="placeholder-icon-box">
+272:               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+273:                 <path d="M23 7l-7 5 7 5V7z"/>
+274:                 <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+275:               </svg>
+276:             </div>
+277:             <h3>Optical Observation Standby</h3>
+278:             <p>Click <strong>Use Browser Webcam</strong> or enter a <strong>Phone IP Webcam URL</strong> (e.g. <code>http://192.168.x.x:8080/video</code>) to initiate live video monitoring with AI bounding boxes.</p>
+279:           </div>
+280: 
+281:           <!-- Floating HUD Overlay on Video -->
+282:           <div class="video-floating-hud">
+283:             <span class="hud-pill"><span class="hud-dot"></span> REAL-TIME DETECTION HUD</span>
+284:             <span id="video-fps-meter" class="hud-stat">30 FPS Live Stream</span>
+285:           </div>
+286:         </div>
+287: 
+288:         <!-- Hidden canvas used for grabbing frames -->
+289:         <canvas id="browser-cam-canvas" class="hidden"></canvas>
+290:       </section>
+291: 
+292:       <!-- STATION 2: SEPARATE Last Scanned Inspection Snapshot & Audit Log -->
+293:       <section class="dashboard-panel snapshot-station-panel">
+294:         <div class="panel-topbar">
+295:           <div class="topbar-title-group">
+296:             <div class="topbar-icon icon-snapshot-box">
+297:               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+298:                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+299:                 <circle cx="8.5" cy="8.5" r="1.5"/>
+300:                 <polyline points="21 15 16 10 5 21"/>
+301:               </svg>
+302:             </div>
+303:             <div>
+304:               <h2>Last Scanned Inspection Snapshot</h2>
+305:               <span class="topbar-subtitle">Neural inspection with localized decay hotspots</span>
+306:             </div>
+307:           </div>
+308:           <div class="topbar-badges">
+309:             <span id="detection-indicator-badge" class="badge-detection badge-pending">Standby</span>
+310:           </div>
+311:         </div>
+312: 
+313:         <!-- Snapshot Control Header Bar: Timestamp + Heatmap/Palette Controls + Scan Now Button -->
+314:         <div class="snapshot-header-bar">
+315:           <div class="snapshot-meta-block">
+316:             <span class="meta-label">Inspected:</span>
+317:             <strong id="camera-meta" class="meta-time">No scan recorded yet</strong>
+318:           </div>
+319:           <div class="snapshot-header-actions">
+320:             <!-- Heatmap Toggle for Scanned Image -->
+321:             <label class="modern-toggle" title="Toggle attention heatmap on scanned image">
+322:               <input type="checkbox" id="toggle-snapshot-heatmap" checked>
+323:               <span class="toggle-track"></span>
+324:               <span class="toggle-title">Heatmap: <strong id="snapshot-heatmap-label">ON</strong></span>
+325:             </label>
+326:             <!-- Palette Selector for Scanned Image -->
+327:             <div class="colormap-picker">
+328:               <label for="select-snapshot-colormap">Palette:</label>
+329:               <select id="select-snapshot-colormap">
+330:                 <option value="turbo" selected>Turbo Thermal</option>
+331:                 <option value="hot">Fire / Hot</option>
+332:                 <option value="jet">Jet Rainbow</option>
+333:               </select>
+334:             </div>
+335:             <!-- Prominent Scan Chamber Now Button in Scanned Section -->
+336:             <button type="button" class="btn btn-scan-now" id="btn-scan-now" title="Trigger instant neural inspection scan on chamber produce">
+337:               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+338:                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+339:               </svg>
+340:               <span>Scan Chamber Now</span>
+341:             </button>
+342:           </div>
+343:         </div>
+344: 
+345:         <!-- Archival Snapshot Viewport -->
+346:         <div class="snapshot-viewport-container">
+347:           <div id="camera-placeholder" class="viewport-placeholder">
+348:             <div class="placeholder-icon-box">
+349:               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+350:                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+351:                 <circle cx="12" cy="13" r="4"/>
+352:               </svg>
+353:             </div>
+354:             <h3>No Archival Snapshot Recorded</h3>
+355:             <p>Click <strong>Scan Chamber Now</strong> above or wait for the 60s automated inspection. High-resolution diagnostic stills will be displayed here.</p>
+356:           </div>
+357:           <img id="camera-image" alt="Last scanned produce inspection still with neural detection overlay" class="hidden">
+358:         </div>
+359: 
+360:         <!-- Diagnostic Summary Grid -->
+361:         <div class="diagnostic-summary-grid">
+362:           <div class="diag-cell">
+363:             <span class="diag-label">Produce Quality Condition</span>
+364:             <span id="detected-condition" class="diag-val val-fresh">Optimal / Sound</span>
+365:           </div>
+366:           <div class="diag-cell">
+367:             <span class="diag-label">Model Confidence</span>
+368:             <span id="detected-confidence" class="diag-val">—</span>
+369:           </div>
+370:           <div class="diag-cell">
+371:             <span class="diag-label">Decay Severity Score</span>
+372:             <span id="detected-severity" class="diag-val">Optimal Fresh (0.0%)</span>
+373:           </div>
+374:           <div class="diag-cell">
+375:             <span class="diag-label">Spatial Saliency</span>
+376:             <span id="detected-thermal" class="diag-val">Turbo Thermal Mapping</span>
+377:           </div>
+378:         </div>
+379: 
+380:         <!-- Inspection Audit Log & History Timeline -->
+381:         <div class="inspection-audit-card">
+382:           <div class="audit-header">
+383:             <h3>Chamber Inspection Audit Log</h3>
+384:             <span class="audit-count" id="audit-count">0 Scans</span>
+385:           </div>
+386:           <div class="audit-table-wrap">
+387:             <table class="audit-table" id="audit-table">
+388:               <thead>
+389:                 <tr>
+390:                   <th>Timestamp (Local)</th>
+391:                   <th>Produce Condition</th>
+392:                   <th>Confidence</th>
+393:                   <th>Chamber Microclimate</th>
+394:                   <th>Action Recommendation</th>
+395:                 </tr>
+396:               </thead>
+397:               <tbody id="audit-tbody">
+398:                 <tr class="empty-audit-row">
+399:                   <td colspan="5">No inspection events logged yet. Click "Scan Chamber Now" to record.</td>
+400:                 </tr>
+401:               </tbody>
+402:             </table>
+403:           </div>
+404:         </div>
+405:       </section>
+406:     </div>
+407:   </main>
+408: 
+409:   <!-- Modern Fluid Footer -->
+410:   <footer class="app-footer">
+411:     <div class="footer-container">
+412:       <div class="footer-info">
+413:         <strong>North East Farmer Cold Storage Project · Active AI Vision Station</strong>
+414:         <p>Engineered for small-holder farmers and agricultural cooperatives across North East India (Assam, Meghalaya, Sikkim, Nagaland, Arunachal, Mizoram, Manipur, Tripura) to minimize post-harvest horticultural losses through passive evaporative cooling and continuous computer vision inspection.</p>
+415:       </div>
+416:       <div class="footer-specs">
+417:         <span>Microclimate Control: 2.0 – 8.0 °C / 70 – 95% RH</span>
+418:         <span>Detection Architecture: MobileNetV2 + Spatial Grad-CAM</span>
+419:         <span>Storage Protocol: 60s Cycle / Frame Pruning Active</span>
+420:       </div>
+421:     </div>
+422:   </footer>
+423: 
+424:   <script src="/static/app.js"></script>
+425: </body>
+426: </html>
+427: 
+The above content shows the entire, complete file contents of the requested file.
