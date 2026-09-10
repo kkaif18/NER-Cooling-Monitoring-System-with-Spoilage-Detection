@@ -54,6 +54,32 @@ class GradCAM:
             cam_np = np.zeros_like(cam_np)
         return cam_np, pred_class, pred_conf, probs.squeeze(0).detach().cpu()
 
+    @torch.no_grad()
+    def generate_cam_fast(self, input_tensor: torch.Tensor, target_class: Optional[int] = None):
+        """Memory-efficient CAM for live inference. Uses classifier weights instead of backward()."""
+        self.model.eval()
+        logits = self.model(input_tensor)
+        probs = F.softmax(logits, dim=1)
+        pred_class = torch.argmax(probs, dim=1).item()
+        pred_conf = probs[0, pred_class].item()
+        if target_class is None:
+            target_class = pred_class
+            
+        # Standard CAM: weight * activation
+        weights = self.model.classifier[1].weight[target_class]
+        cam = torch.sum(weights.view(1, -1, 1, 1) * self.activations, dim=1, keepdim=True)
+        cam = F.relu(cam)
+        
+        h, w = input_tensor.shape[2], input_tensor.shape[3]
+        cam = F.interpolate(cam, size=(h, w), mode="bilinear", align_corners=False)
+        cam_np = cam.squeeze().cpu().numpy()
+        cam_min, cam_max = cam_np.min(), cam_np.max()
+        if cam_max - cam_min > 1e-8:
+            cam_np = (cam_np - cam_min) / (cam_max - cam_min)
+        else:
+            cam_np = np.zeros_like(cam_np)
+        return cam_np, pred_class, pred_conf, probs.squeeze(0).detach().cpu()
+
 
 def extract_bbox_from_cam(
     heatmap: np.ndarray,

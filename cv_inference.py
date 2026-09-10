@@ -245,7 +245,7 @@ def detect_live_frame(frame_bgr: np.ndarray) -> dict:
     with _infer_lock:
         load_model()
         tensor, (sx, sy, cw, ch) = preprocess_frame(frame_bgr, device=DEVICE)
-        cam_crop, pred_idx, confidence, probs = _gradcam.generate_cam(tensor, target_class=None)
+        cam_crop, pred_idx, confidence, probs = _gradcam.generate_cam_fast(tensor, target_class=None)
         label = CLASS_NAMES[pred_idx]
         spoiled_prob = float(probs[1].item())
 
@@ -278,7 +278,7 @@ def render_frame_with_cam(raw_image_path: Path, colormap: int = cv2.COLORMAP_TUR
     with _infer_lock:
         load_model()
         tensor, (sx, sy, cw, ch) = preprocess_frame(frame, device=DEVICE)
-        heatmap_crop, pred_idx, confidence, probs = _gradcam.generate_cam(tensor, target_class=None)
+        heatmap_crop, pred_idx, confidence, probs = _gradcam.generate_cam_fast(tensor, target_class=None)
         label = CLASS_NAMES[pred_idx]
         spoiled_prob = float(probs[1].item())
 
@@ -287,7 +287,7 @@ def render_frame_with_cam(raw_image_path: Path, colormap: int = cv2.COLORMAP_TUR
         heatmap_full[sy : sy + ch, sx : sx + cw] = cam_resized
 
         if label == "Fresh" and spoiled_prob >= 0.20:
-            spoil_crop, _, _, _ = _gradcam.generate_cam(tensor, target_class=1)
+            spoil_crop, _, _, _ = _gradcam.generate_cam_fast(tensor, target_class=1)
             spoil_full = np.zeros((h, w), dtype=np.float32)
             spoil_full[sy : sy + ch, sx : sx + cw] = cv2.resize(spoil_crop, (cw, ch))
             severity, tier = calculate_spoilage_severity(spoiled_prob, spoil_full)
@@ -328,7 +328,7 @@ def classify_image(image_path: Path, colormap: int = cv2.COLORMAP_TURBO) -> dict
         load_model()
         tensor, (sx, sy, cw, ch) = preprocess_frame(frame, device=DEVICE)
 
-        heatmap_crop, pred_idx, confidence, probs = _gradcam.generate_cam(tensor, target_class=None)
+        heatmap_crop, pred_idx, confidence, probs = _gradcam.generate_cam_fast(tensor, target_class=None)
         label = CLASS_NAMES[pred_idx]
         spoiled_prob = float(probs[1].item())
 
@@ -337,7 +337,7 @@ def classify_image(image_path: Path, colormap: int = cv2.COLORMAP_TURBO) -> dict
         heatmap_full[sy : sy + ch, sx : sx + cw] = cam_resized
 
         if label == "Fresh" and spoiled_prob >= 0.20:
-            spoil_crop, _, _, _ = _gradcam.generate_cam(tensor, target_class=1)
+            spoil_crop, _, _, _ = _gradcam.generate_cam_fast(tensor, target_class=1)
             spoil_full = np.zeros((h, w), dtype=np.float32)
             spoil_full[sy : sy + ch, sx : sx + cw] = cv2.resize(spoil_crop, (cw, ch))
             severity, tier = calculate_spoilage_severity(spoiled_prob, spoil_full)
