@@ -181,6 +181,11 @@ def save_and_classify_jpeg(contents: bytes, timestamp: datetime | None = None) -
         timestamp=ts,
     )
     prune_old_frames()
+    
+    # Force Python to clean up memory to prevent 502 OOM on 512MB limit
+    import gc
+    gc.collect()
+    
     return serialize_frame(row)
 
 
@@ -190,7 +195,7 @@ def save_and_classify_jpeg(contents: bytes, timestamp: datetime | None = None) -
 @app.on_event("startup")
 def startup():
     init_db()
-    load_model()
+    # Model is loaded lazily on first inference to prevent boot timeouts / OOM on free tiers
 
 
 @app.post("/api/ingest")
@@ -254,10 +259,15 @@ def get_image_by_id(
 ):
     """Retrieve a specific scanned image by its audit frame ID."""
     frame = get_frame(frame_id)
-    if frame is None or not Path(frame.image_path).exists():
+    if frame is None:
         raise HTTPException(status_code=404, detail="Scanned image not found")
 
-    base_path = Path(frame.image_path)
+    filename = Path(frame.image_path).name
+    base_path = UPLOADS_DIR / filename
+    
+    if not base_path.exists():
+        raise HTTPException(status_code=404, detail="Scanned image not found")
+
     raw_path = base_path.with_name(base_path.stem.replace("_raw", "").replace("_annotated", "") + "_raw.jpg")
 
     if (view == "raw" or not heatmap) and raw_path.exists():
@@ -284,10 +294,15 @@ def latest_image(
 ):
     """Retrieve the latest scanned image with optional raw view or dynamic colormap."""
     frame = latest_frame()
-    if frame is None or not Path(frame.image_path).exists():
+    if frame is None:
         raise HTTPException(status_code=404, detail="No image yet")
 
-    base_path = Path(frame.image_path)
+    filename = Path(frame.image_path).name
+    base_path = UPLOADS_DIR / filename
+    
+    if not base_path.exists():
+        raise HTTPException(status_code=404, detail="No image yet")
+
     raw_path = base_path.with_name(base_path.stem.replace("_raw", "").replace("_annotated", "") + "_raw.jpg")
 
     # If raw requested or heatmap turned off

@@ -52,7 +52,12 @@ class GradCAM:
             cam_np = (cam_np - cam_min) / (cam_max - cam_min)
         else:
             cam_np = np.zeros_like(cam_np)
-        return cam_np, pred_class, pred_conf, probs.squeeze(0).detach().cpu()
+            
+        res_probs = probs.squeeze(0).detach().cpu()
+        self.activations = None
+        self.gradients = None
+        
+        return cam_np, pred_class, pred_conf, res_probs
 
     @torch.no_grad()
     def generate_cam_fast(self, input_tensor: torch.Tensor, target_class: Optional[int] = None):
@@ -78,7 +83,11 @@ class GradCAM:
             cam_np = (cam_np - cam_min) / (cam_max - cam_min)
         else:
             cam_np = np.zeros_like(cam_np)
-        return cam_np, pred_class, pred_conf, probs.squeeze(0).detach().cpu()
+            
+        res_probs = probs.squeeze(0).detach().cpu()
+        self.activations = None
+        
+        return cam_np, pred_class, pred_conf, res_probs
 
 
 def extract_bbox_from_cam(
