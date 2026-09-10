@@ -1019,7 +1019,7 @@ canvas#chart {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  min-height: 440px;
+  min-height: min(100vw, 440px);
   max-height: 580px;
   background: #08140c;
   border-radius: var(--radius-md);
@@ -1032,7 +1032,7 @@ canvas#chart {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  min-height: 330px;
+  min-height: min(100vw, 330px);
   max-height: 430px;
   background: #08140c;
   border-radius: var(--radius-md);
