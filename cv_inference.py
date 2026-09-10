@@ -28,6 +28,9 @@ from settings import (
     IMAGENET_STD,
 )
 
+# Limit PyTorch threads to prevent CPU memory spikes on 512MB free tiers
+torch.set_num_threads(1)
+
 _model = None
 _gradcam = None
 _infer_lock = Lock()
