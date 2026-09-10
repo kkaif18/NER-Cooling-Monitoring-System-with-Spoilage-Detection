@@ -9,4 +9,4 @@ sleep 3
 python simulator.py --url http://127.0.0.1:${PORT:-8000} &
 
 # Wait for both background processes; if either exits, the container stops
-wait -n
+wait 
