@@ -379,7 +379,7 @@ function addAuditRecord(camera) {
   };
 
   auditLog.unshift(record);
-  if (auditLog.length > 25) auditLog.pop();
+  if (auditLog.length > 20) auditLog.pop();
   renderAuditTable();
 }
 

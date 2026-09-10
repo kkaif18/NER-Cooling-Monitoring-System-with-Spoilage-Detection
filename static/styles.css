@@ -91,6 +91,13 @@ body.edge-to-edge {
   flex-wrap: wrap;
 }
 
+@media (max-width: 600px) {
+  .app-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -378,7 +385,7 @@ body.edge-to-edge {
 /* Metric Cards */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 16px;
   margin-bottom: 20px;
 }
@@ -1622,6 +1629,12 @@ canvas#chart {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .diagnostic-summary-grid, .scan-modal-meta-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .modal-meta-cell {

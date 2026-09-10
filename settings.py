@@ -27,7 +27,7 @@ HUMIDITY_MAX = 95.0
 
 HISTORY_LIMIT = 120
 CAMERA_POLL_SECONDS = 60.0  # Capture still every 1 minute
-MAX_STORED_FRAMES = 10     # Prune older stills to conserve disk/memory
+MAX_STORED_FRAMES = 20     # Prune older stills to conserve disk/memory
 HEATMAP_ALPHA = 0.40
 HEATMAP_THRESHOLD = 0.25
 
